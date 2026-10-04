@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="user_access_log_view_tree" model="ir.ui.view">
+        <field name="name">user.access.log.tree</field>
+        <field name="model">user.access.log</field>
+        <field name="arch" type="xml">
+            <tree create="0" edit="0" delete="0">
+                <field name="create_date"/>
+                <field name="user_id"/>
+                <field name="action" widget="badge"
+                       decoration-info="action == 'password'" decoration-warning="action == 'totp'"/>
+                <field name="done_by_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="user_access_log_view_search" model="ir.ui.view">
+        <field name="name">user.access.log.search</field>
+        <field name="model">user.access.log</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="user_id"/>
+                <field name="done_by_id"/>
+                <filter string="Password resets" name="password" domain="[('action', '=', 'password')]"/>
+                <filter string="2FA disabled" name="totp" domain="[('action', '=', 'totp')]"/>
+                <group expand="0" string="Group By">
+                    <filter string="User" name="group_user" context="{'group_by': 'user_id'}"/>
+                    <filter string="Action" name="group_action" context="{'group_by': 'action'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_user_access_log" model="ir.actions.act_window">
+        <field name="name">User Access Log</field>
+        <field name="res_model">user.access.log</field>
+        <field name="view_mode">tree</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">No access changes yet</p>
+            <p>Password resets and 2FA changes made from the Users list appear here.</p>
+        </field>
+    </record>
+
+    <menuitem id="menu_user_access_log" name="User Access Log"
+              parent="base.menu_users" action="action_user_access_log"
+              sequence="90" groups="base.group_system"/>
+</odoo>
