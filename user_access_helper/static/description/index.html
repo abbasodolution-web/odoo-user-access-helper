@@ -1,69 +1,84 @@
 <section class="oe_container">
     <div class="oe_row oe_spaced">
-        <div class="oe_span12">
-            <h2 class="oe_slogan" style="color:#0f766e;">User Access Helper</h2>
-            <h3 class="oe_slogan">Reset passwords and disable 2FA for your users in one click &mdash; with an audit log.</h3>
-            <p class="oe_mt32" style="text-align:center;font-size:16px;">
-                "I forgot my password" and "I lost my phone, I can't log in" are the most common support tickets.
-                This module lets Odoo administrators fix both straight from the Users list, for one user or many,
-                and records every change.
-            </p>
-        </div>
+        <h2 class="oe_slogan" style="color:#0f766e">User Access Helper</h2>
+        <h3 class="oe_slogan">See which user accounts are a risk, fix them in bulk, and keep a record of every access change</h3>
+        <p class="oe_mt32" style="font-size:16px;text-align:center">
+            Admins without two-factor authentication, accounts nobody has used for months, people who left but can
+            still log in, API keys nobody remembers: they are invisible in the standard Users list. This module shows
+            them on one screen, lets you act on many users at once, and logs who gave whom which rights.
+        </p>
     </div>
 </section>
 
 <section class="oe_container oe_dark">
     <div class="oe_row oe_spaced">
-        <div class="oe_span12">
-            <h2 class="oe_slogan">Key features</h2>
-            <ul style="font-size:16px;line-height:1.8;max-width:780px;margin:0 auto;">
-                <li><b>Bulk password reset</b> &mdash; set a new password for all selected users at once (8+ characters, typed twice)</li>
-                <li><b>Disable 2FA</b> &mdash; turn off two-factor authentication and revoke trusted devices for users who lost their device</li>
-                <li><b>Odoo's own security check</b> &mdash; the admin confirms their password before any change</li>
-                <li><b>Audit log</b> &mdash; who did it, for whom and when, under Settings &rsaquo; Users &amp; Companies</li>
-                <li><b>Admins only</b> &mdash; actions and log are visible to Settings administrators only</li>
-                <li><b>Tested</b> &mdash; covered by automated tests; depends only on base and auth_totp</li>
-            </ul>
-        </div>
+        <h3 class="oe_slogan">What it does</h3>
+        <ul style="font-size:15px;line-height:1.8;max-width:860px;margin:0 auto">
+            <li><b>Security Overview</b>: every user's admin rights, 2FA, last seen, idle days, open sessions and API keys.</li>
+            <li><b>Risk flags</b>: <span style="color:#dc2626"><b>Admin without 2FA</b></span>, <b>Unused account</b> (90+ days)
+                and <b>Never logged in</b>, sorted to the top, with filters for each.</li>
+            <li><b>Access Actions</b> for one user or many, from the Users list or the Overview:
+                <ul>
+                    <li>Set a new password, or <b>generate a strong one</b> and copy it</li>
+                    <li>Send a password reset email</li>
+                    <li>Disable 2FA for a lost phone (trusted devices are removed too)</li>
+                    <li><b>Log out of all devices</b> (stolen laptop, shared computer)</li>
+                    <li><b>Revoke API keys</b></li>
+                    <li><b>Deactivate (offboarding)</b>: archive, end every session and revoke API keys in one step, and Reactivate</li>
+                </ul>
+            </li>
+            <li><b>A reason on every action</b> and a live summary before you apply ("3 sessions will be ended").</li>
+            <li><b>Access rights change log</b>: whenever anyone adds or removes a group on a user, it is recorded
+                automatically, with <b>Admin rights granted</b> flagged. Only the groups that were chosen are listed,
+                not the dozens implied by them.</li>
+            <li><b>One audit log</b>: what, for whom, done by whom, when, from which IP address and why.</li>
+            <li><b>Safe by design</b>: Odoo's own password re-check before every change; you cannot deactivate yourself
+                or the last administrator, and your own session is never ended.</li>
+            <li>Settings administrators only. Depends on base, auth_totp and auth_signup. Covered by 16 automated tests.</li>
+        </ul>
     </div>
 </section>
 
 <section class="oe_container">
     <div class="oe_row oe_spaced">
-        <div class="oe_span12">
-            <h2 class="oe_slogan">1. Reset passwords in bulk</h2>
-            <p style="text-align:center;font-size:16px;">Settings &rsaquo; Users &rsaquo; select users &rsaquo; Actions &rsaquo; Reset Password</p>
-            <div class="oe_demo oe_screenshot"><img src="screenshot_reset_password.png" alt="Reset Password" style="max-width:100%;"></div>
+        <h3 class="oe_slogan">How it looks</h3>
+        <div style="margin:24px auto;max-width:1000px;text-align:center">
+            <p style="font-size:15px;margin-bottom:8px"><b>Security Overview: risky accounts first</b><br>Settings &rsaquo; Users &amp; Companies &rsaquo; Security Overview</p>
+            <img src="screenshot_overview.png" style="max-width:100%;border:1px solid #ddd;border-radius:6px;box-shadow:0 4px 16px rgba(0,0,0,.12)"/>
+        </div>
+        <div style="margin:24px auto;max-width:1000px;text-align:center">
+            <p style="font-size:15px;margin-bottom:8px"><b>Offboarding in one step, with a reason</b></p>
+            <img src="screenshot_offboarding.png" style="max-width:100%;border:1px solid #ddd;border-radius:6px;box-shadow:0 4px 16px rgba(0,0,0,.12)"/>
+        </div>
+        <div style="margin:24px auto;max-width:1000px;text-align:center">
+            <p style="font-size:15px;margin-bottom:8px"><b>Also in the Users list: Actions &rsaquo; Access Actions</b></p>
+            <img src="screenshot_users_menu.png" style="max-width:100%;border:1px solid #ddd;border-radius:6px;box-shadow:0 4px 16px rgba(0,0,0,.12)"/>
+        </div>
+        <div style="margin:24px auto;max-width:1000px;text-align:center">
+            <p style="font-size:15px;margin-bottom:8px"><b>Generate a strong password for a new hire and copy it</b></p>
+            <img src="screenshot_password.png" style="max-width:100%;border:1px solid #ddd;border-radius:6px;box-shadow:0 4px 16px rgba(0,0,0,.12)"/>
+        </div>
+        <div style="margin:24px auto;max-width:1000px;text-align:center">
+            <p style="font-size:15px;margin-bottom:8px"><b>Every change in the User Access Log, including access rights changes</b></p>
+            <img src="screenshot_log.png" style="max-width:100%;border:1px solid #ddd;border-radius:6px;box-shadow:0 4px 16px rgba(0,0,0,.12)"/>
         </div>
     </div>
 </section>
 
 <section class="oe_container oe_dark">
     <div class="oe_row oe_spaced">
-        <div class="oe_span12">
-            <h2 class="oe_slogan">2. Disable 2FA for a lost device</h2>
-            <p style="text-align:center;font-size:16px;">Actions &rsaquo; Disable 2FA &mdash; trusted devices are revoked so the user can set it up again</p>
-            <div class="oe_demo oe_screenshot"><img src="screenshot_disable_2fa.png" alt="Disable 2FA" style="max-width:100%;"></div>
-        </div>
+        <h3 class="oe_slogan">Setup</h3>
+        <p style="font-size:15px;text-align:center">Nothing to configure. Install it and open
+            Settings &rsaquo; Users &amp; Companies &rsaquo; <b>Security Overview</b> or <b>User Access Log</b>.
+            Access rights changes are logged from the moment the module is installed.</p>
+        <p style="font-size:15px;text-align:center">Questions or ideas: <b>abbasodolution@gmail.com</b></p>
     </div>
 </section>
 
 <section class="oe_container">
-    <div class="oe_row oe_spaced">
-        <div class="oe_span12">
-            <h2 class="oe_slogan">3. Every change in the audit log</h2>
-            <p style="text-align:center;font-size:16px;">Settings &rsaquo; Users &amp; Companies &rsaquo; User Access Log</p>
-            <div class="oe_demo oe_screenshot"><img src="screenshot_audit_log.png" alt="User Access Log" style="max-width:100%;"></div>
-        </div>
-    </div>
-</section>
-
-<section class="oe_container oe_dark">
-    <div class="oe_row oe_spaced">
-        <div class="oe_span12" style="text-align:center;">
-            <h2 class="oe_slogan">Need a custom Odoo flow?</h2>
-            <p style="font-size:16px;">I'm ABBAS. I build Odoo modules tailored to how your business works &mdash;
-                admin tools, CRM automations, custom reports and integrations for Odoo 17 &amp; 19.</p>
-        </div>
+    <div class="oe_row oe_spaced" style="text-align:center">
+        <h3 class="oe_slogan">Need a custom Odoo flow?</h3>
+        <p style="font-size:16px">I'm ABBAS. I build Odoo modules tailored to how your business works:
+            admin and security tools, CRM automations, data migration, custom reports and integrations, Odoo 17 to 20.</p>
     </div>
 </section>

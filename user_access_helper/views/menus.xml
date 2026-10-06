@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_user_access_overview" name="Security Overview"
+              parent="base.menu_users" action="action_user_access_overview"
+              sequence="80" groups="base.group_system"/>
+    <menuitem id="menu_user_access_log" name="User Access Log"
+              parent="base.menu_users" action="action_user_access_log"
+              sequence="90" groups="base.group_system"/>
+</odoo>

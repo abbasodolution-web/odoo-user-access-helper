@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="user_access_overview_view_list" model="ir.ui.view">
+        <field name="name">user.access.overview.list</field>
+        <field name="model">user.access.overview</field>
+        <field name="arch" type="xml">
+            <list create="0" edit="0" delete="0" decoration-muted="not active">
+                <field name="user_id"/>
+                <field name="login" optional="show"/>
+                <field name="company_id" groups="base.group_multi_company" optional="hide"/>
+                <field name="user_type" optional="hide"/>
+                <field name="is_admin" widget="boolean_toggle" readonly="1"/>
+                <field name="totp_enabled" widget="boolean_toggle" readonly="1"/>
+                <field name="last_login"/>
+                <field name="days_inactive" invisible="not last_login"/>
+                <field name="session_count"/>
+                <field name="apikey_count"/>
+                <field name="risk" widget="badge"
+                       decoration-danger="risk == 'high'"
+                       decoration-warning="risk in ('inactive', 'never')"
+                       decoration-success="risk == 'ok'"/>
+                <field name="active" column_invisible="1"/>
+                <button name="action_open_user" type="object" icon="fa-external-link" title="Open user"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="user_access_overview_view_search" model="ir.ui.view">
+        <field name="name">user.access.overview.search</field>
+        <field name="model">user.access.overview</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="user_id"/>
+                <field name="login"/>
+                <filter string="Needs attention" name="attention" domain="[('risk', '!=', 'ok')]"/>
+                <filter string="Admins without 2FA" name="high" domain="[('risk', '=', 'high')]"/>
+                <filter string="Without 2FA" name="no_totp" domain="[('totp_enabled', '=', False)]"/>
+                <filter string="Unused 90+ days" name="inactive" domain="[('risk', '=', 'inactive')]"/>
+                <filter string="Never logged in" name="never" domain="[('risk', '=', 'never')]"/>
+                <separator/>
+                <filter string="Administrators" name="admins" domain="[('is_admin', '=', True)]"/>
+                <filter string="Has API keys" name="apikeys" domain="[('apikey_count', '&gt;', 0)]"/>
+                <filter string="Has open sessions" name="sessions" domain="[('session_count', '&gt;', 0)]"/>
+                <separator/>
+                <filter string="Internal users" name="internal" domain="[('user_type', '=', 'internal')]"/>
+                <filter string="Portal users" name="portal" domain="[('user_type', '=', 'portal')]"/>
+                <separator/>
+                <filter string="Active" name="active" domain="[('active', '=', True)]"/>
+                <filter string="Archived" name="archived" domain="[('active', '=', False)]"/>
+                <group expand="0" string="Group By">
+                    <filter string="Risk" name="group_risk" context="{'group_by': 'risk'}"/>
+                    <filter string="User type" name="group_type" context="{'group_by': 'user_type'}"/>
+                    <filter string="Company" name="group_company" context="{'group_by': 'company_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="user_access_overview_view_graph" model="ir.ui.view">
+        <field name="name">user.access.overview.graph</field>
+        <field name="model">user.access.overview</field>
+        <field name="arch" type="xml">
+            <graph type="pie">
+                <field name="risk"/>
+            </graph>
+        </field>
+    </record>
+
+    <record id="action_user_access_overview" model="ir.actions.act_window">
+        <field name="name">Security Overview</field>
+        <field name="res_model">user.access.overview</field>
+        <field name="view_mode">list,graph</field>
+        <field name="context">{'search_default_internal': 1, 'search_default_active': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">No users match these filters</p>
+            <p>Select users and use Actions &gt; Access Actions to reset passwords, end sessions or deactivate them.</p>
+        </field>
+    </record>
+</odoo>

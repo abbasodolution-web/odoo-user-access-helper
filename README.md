@@ -1,21 +1,29 @@
-# User Access Helper — Odoo 17
+# User Access Helper — Odoo 18 (v2)
 
 ![User Access Helper](user_access_helper/static/description/banner.png)
 
-Fix the most common Odoo support tickets — "I forgot my password" and "I lost my 2FA phone" —
-straight from **Settings › Users**, for one user or many.
+See which user accounts are a risk, fix them in bulk, and keep a record of every access change —
+from **Settings › Users & Companies**.
 
 ## Features
-- **Bulk password reset**: set a new password for all selected users at once (8+ characters, typed twice)
-- **Disable 2FA**: turn off two-factor authentication and revoke trusted devices
-- **Odoo's own security check**: the admin confirms their password before any change
-- **Audit log**: who did it, for whom and when (Settings › Users & Companies › User Access Log)
-- **Admins only**, covered by automated tests; depends only on `base` and `auth_totp`
+- **Security Overview**: every user's admin rights, 2FA, last seen, idle days, open sessions and API keys
+- **Risk flags**: Admin without 2FA, Unused account (90+ days), Never logged in — sorted to the top, with filters
+- **Access Actions** for one user or many (Users list or Overview):
+  set or generate a strong password, send a reset email, disable 2FA, log out of all devices,
+  revoke API keys, deactivate (offboarding: archive + end sessions + revoke keys) and reactivate
+- **A reason on every action** and a live summary before you apply
+- **Access rights change log**: group added/removed on any user is recorded automatically, admin grants flagged;
+  only the chosen groups are listed, not the ones they imply
+- **One audit log**: what, for whom, by whom, when, IP address and reason
+- **Safe by design**: Odoo's password re-check before every change; you cannot deactivate yourself or the
+  last administrator, and your own session is never ended
+- Settings administrators only; depends on `base`, `auth_totp`, `auth_signup`; 16 automated tests
 
 ## Install
 Copy `user_access_helper` into your addons path, update the Apps list and install **User Access Helper**.
+Odoo 17 version: branch [`17.0`](../../tree/17.0).
 
 ## Author
-**ABBAS** — custom Odoo development (Odoo 17 & 19). Support: abbasodolution@gmail.com
+**ABBAS** — custom Odoo development (Odoo 17 to 20). Support: abbasodolution@gmail.com
 
 License: LGPL-3

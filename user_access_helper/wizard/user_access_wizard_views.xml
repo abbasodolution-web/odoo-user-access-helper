@@ -5,19 +5,33 @@
         <field name="model">user.access.wizard</field>
         <field name="arch" type="xml">
             <form>
-                <field name="mode" invisible="1"/>
                 <group>
                     <field name="user_ids" widget="many2many_tags"/>
+                    <field name="mode" widget="radio"/>
                 </group>
-                <group invisible="mode != 'password'">
-                    <field name="new_password" password="True" required="mode == 'password'"/>
-                    <field name="confirm_password" password="True" required="mode == 'password'"/>
+                <group invisible="mode != 'password' or generated_password">
+                    <field name="new_password" password="True"/>
+                    <field name="confirm_password" password="True"/>
+                    <div colspan="2">
+                        <button name="action_generate_password" type="object" class="btn-link ps-0"
+                                icon="fa-magic" string="Generate a strong password"/>
+                    </div>
                 </group>
-                <div invisible="mode != 'totp'" class="alert alert-info" role="alert">
-                    <field name="totp_user_count" class="oe_inline"/> of the selected users have
-                    two-factor authentication enabled. It will be turned off and their trusted
-                    devices revoked, so they can log in with their password and set it up again.
+                <group invisible="mode != 'password' or not generated_password">
+                    <field name="generated_password" string="New password" widget="CopyClipboardChar"/>
+                    <div colspan="2" class="text-muted">
+                        Copy it now: it is not shown again or stored anywhere after you apply.
+                    </div>
+                </group>
+                <div class="alert alert-info" role="alert" invisible="not summary">
+                    <field name="summary" nolabel="1"/>
                 </div>
+                <div class="alert alert-warning" role="alert" invisible="mode != 'deactivate'">
+                    Deactivated users cannot log in. Nothing they created is deleted.
+                </div>
+                <group>
+                    <field name="reason" placeholder="e.g. Ticket #1234, left the company, lost phone"/>
+                </group>
                 <footer>
                     <button name="action_apply" string="Apply" type="object" class="btn-primary"/>
                     <button string="Cancel" class="btn-secondary" special="cancel"/>
@@ -26,25 +40,23 @@
         </field>
     </record>
 
-    <record id="action_user_access_reset_password" model="ir.actions.act_window">
-        <field name="name">Reset Password</field>
+    <record id="action_user_access_wizard" model="ir.actions.act_window">
+        <field name="name">Access Actions</field>
         <field name="res_model">user.access.wizard</field>
         <field name="view_mode">form</field>
         <field name="target">new</field>
-        <field name="context">{'default_mode': 'password'}</field>
         <field name="binding_model_id" ref="base.model_res_users"/>
         <field name="binding_view_types">list,form</field>
         <field name="groups_id" eval="[(4, ref('base.group_system'))]"/>
     </record>
 
-    <record id="action_user_access_disable_totp" model="ir.actions.act_window">
-        <field name="name">Disable 2FA</field>
+    <record id="action_user_access_wizard_overview" model="ir.actions.act_window">
+        <field name="name">Access Actions</field>
         <field name="res_model">user.access.wizard</field>
         <field name="view_mode">form</field>
         <field name="target">new</field>
-        <field name="context">{'default_mode': 'totp'}</field>
-        <field name="binding_model_id" ref="base.model_res_users"/>
-        <field name="binding_view_types">list,form</field>
+        <field name="binding_model_id" ref="model_user_access_overview"/>
+        <field name="binding_view_types">list</field>
         <field name="groups_id" eval="[(4, ref('base.group_system'))]"/>
     </record>
 </odoo>
