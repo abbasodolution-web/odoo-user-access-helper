@@ -23,7 +23,15 @@ from **Settings › Users & Companies**.
 Copy `user_access_helper` into your addons path, update the Apps list and install **User Access Helper**.
 Odoo 17 version: branch [`17.0`](../../tree/17.0).
 
+## Available for Odoo 17, 18 and 19
+
+| Odoo | Price | Get it |
+|---|---|---|
+| 17 | Free (LGPL-3) | [Odoo Apps Store](https://apps.odoo.com/apps/modules/17.0/user_access_helper) |
+| 18 | Free (LGPL-3) | [Odoo Apps Store](https://apps.odoo.com/apps/modules/18.0/user_access_helper) |
+| 19 | $29 (one-time, OPL-1) | [Odoo Apps Store](https://apps.odoo.com/apps/modules/19.0/user_access_helper) |
+
 ## Author
-**ABBAS** — custom Odoo development (Odoo 17 to 20). Support: abbasodolution@gmail.com
+**ABBAS** — custom Odoo development (Odoo 17, 18 & 19). Support: abbasodolution@gmail.com
 
 License: LGPL-3
