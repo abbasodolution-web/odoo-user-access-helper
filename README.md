@@ -15,7 +15,7 @@ straight from **Settings › Users**, for one user or many.
 ## Install
 Copy `user_access_helper` into your addons path, update the Apps list and install **User Access Helper**.
 
-## Available for Odoo 17, 18, 19 and 20
+## Versions: Odoo 17, 18, 19 and 20
 
 | Odoo | Price | Get it |
 |---|---|---|
