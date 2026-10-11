@@ -23,7 +23,7 @@ from **Settings › Users & Companies**.
 Copy `user_access_helper` into your addons path, update the Apps list and install **User Access Helper**.
 Odoo 17 version: branch [`17.0`](../../tree/17.0).
 
-## Available for Odoo 17, 18, 19 and 20
+## Versions: Odoo 17, 18, 19 and 20
 
 | Odoo | Price | Get it |
 |---|---|---|
