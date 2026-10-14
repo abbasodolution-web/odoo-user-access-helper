@@ -22,7 +22,7 @@ Copy `user_access_helper` into your addons path, update the Apps list and instal
 | 17 (v1) | Free (LGPL-3) | [Odoo Apps Store](https://apps.odoo.com/apps/modules/17.0/user_access_helper) |
 | 18 (v2) | Free (LGPL-3) | [Odoo Apps Store](https://apps.odoo.com/apps/modules/18.0/user_access_helper) |
 | 19 (v3) | $29 (one-time, OPL-1) | [Odoo Apps Store](https://apps.odoo.com/apps/modules/19.0/user_access_helper) |
-| 20 | Coming soon | In development |
+| 20 (v4) | $29 (one-time, OPL-1) | [Odoo Apps Store](https://apps.odoo.com/apps/modules/20.0/user_access_helper) |
 
 ## Author
 **ABBAS** — custom Odoo development (Odoo 17, 18, 19 & 20). Support: abbasodolution@gmail.com
